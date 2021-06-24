@@ -1,0 +1,4 @@
+title: "CESM2-LE Data Sets on AWS"
+logo: images/cesm.jpg
+execute:
+  execute_notebooks: "off"
