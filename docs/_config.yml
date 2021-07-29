@@ -5,7 +5,7 @@ execute:
 html:
   extra_footer: |
     <p>
-    By Science @ Scale Team
+    By Science @ Scale Team <br>
     © Copyright 2021, National Center for Atmospheric Research.
     </p>
 sphinx:
