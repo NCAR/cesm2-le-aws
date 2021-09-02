@@ -1,0 +1,13 @@
+title: "CESM2-LE Data Sets on AWS"
+logo: images/cesm.jpg
+execute:
+  execute_notebooks: "off"
+html:
+  extra_footer: |
+    <p>
+    By Science @ Scale Team <br>
+    © Copyright 2021, National Center for Atmospheric Research.
+    </p>
+sphinx:
+  config:
+    html_show_copyright: false
