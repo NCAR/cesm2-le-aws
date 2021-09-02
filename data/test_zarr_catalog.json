@@ -1,0 +1,79 @@
+{
+  "catalog_file": "test_zarr_catalog.csv",
+  "attributes": [
+    {
+      "column_name": "component",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "frequency",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "experiment",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "forcing_variant",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "control_branch_year",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "variable",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "start_time",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "end_time",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "long_name",
+      "vocabulary": ""
+    },
+    {
+      "column_name": "path",
+      "vocabulary": ""
+    }
+  ],
+  "assets": {
+    "column_name": "path",
+    "format": "zarr"
+  },
+  "aggregation_control": {
+    "variable_column_name": "variable",
+    "groupby_attrs": [
+      "component",
+      "experiment",
+      "frequency",
+      "forcing_variant",
+      "variable"
+    ],
+    "aggregations": [
+      {
+        "type": "join_existing",
+        "attribute_name": "time_range",
+        "options": {
+          "dim": "time",
+          "coords": "minimal",
+          "compat": "override"
+        }
+      },
+      {
+        "type": "join_new",
+        "attribute_name": "member_id",
+        "options": { "coords": "minimal", "compat": "override" }
+      }
+     ]
+  },
+  "esmcat_version": "0.0.1",
+  "id": "glade-cesm2-le",
+  "description": "ESM collection for the CESM2 LENS data stored on AWS in Zarr file format",
+  "last_updated": "2021-09-02T02:58:33+00:00"
+}
