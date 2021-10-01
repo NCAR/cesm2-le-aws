@@ -205,6 +205,24 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-is-the-member-id-assembled">
+   How is the “
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     member_id
+    </span>
+   </code>
+   ” Assembled?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-a-helper-function-to-map-from-control-branch-year-member-number-to-member-id">
+     Adding a “Helper Function” to Map from Control Branch Year + Member Number to Member ID
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-citation">
    Data Citation
   </a>
@@ -247,6 +265,9 @@
 <li><p>Members 91-100: These will begin from years 1011, 1031, 1051, 1071, 1091, 1111, 1131, 1151, 1171, and 1191 of the 1400-year pre-industrial control simulation. This set will include the extensive “MOAR” output, which can be used to drive regional climate models.</p></li>
 </ol>
 <p>The initialization design will allow assessment of oceanic (AMOC) and atmospheric contributions to ensemble spread, and the impact of AMOC initial-condition memory on the global earth system.</p>
+<p>Here are a couple of graphics from the official CESM2-LE Documentation, helping to illustrate the experiment design.</p>
+<p><img alt="CESM2-LE-image1" src="_images/CESM2LE_1.png" />
+<img alt="CESM2-LE-image2" src="_images/CESM2LE_2.png" /></p>
 </div>
 <div class="section" id="visual-representation-of-the-ensemble">
 <h3>Visual Representation of the Ensemble<a class="headerlink" href="#visual-representation-of-the-ensemble" title="Permalink to this headline">¶</a></h3>
@@ -261,7 +282,127 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/model_documentation_1_0.png" src="_images/model_documentation_1_0.png" />
+<img alt="_images/model_documentation_2_0.png" src="_images/model_documentation_2_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-is-the-member-id-assembled">
+<h2>How is the “<code class="docutils literal notranslate"><span class="pre">member_id</span></code>” Assembled?<a class="headerlink" href="#how-is-the-member-id-assembled" title="Permalink to this headline">¶</a></h2>
+<p>Within this analysis ready, cloud native format, we use CMIP standard naming conventions for this dataset. Below are a couple of graphics describing the convention, and how we map from the <code class="docutils literal notranslate"><span class="pre">{control_branch_year}.{ensemble_number}</span></code> (ex. <code class="docutils literal notranslate"><span class="pre">1231.001</span></code>) syntax from above, to the CMIP standard.</p>
+<p><img alt="" src="_images/cesm2_le_naming_1.png" />
+<img alt="" src="_images/cesm2_le_naming_2.png" /></p>
+<div class="section" id="adding-a-helper-function-to-map-from-control-branch-year-member-number-to-member-id">
+<h3>Adding a “Helper Function” to Map from Control Branch Year + Member Number to Member ID<a class="headerlink" href="#adding-a-helper-function-to-map-from-control-branch-year-member-number-to-member-id" title="Permalink to this headline">¶</a></h3>
+<p>Below is a sample function, written in Python, to help with mapping from one to the other! Feel free to use it in your analysis.</p>
+<p>You will need to select the “plus” button here to expand it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_cmip_member_id</span><span class="p">(</span><span class="n">member_id</span><span class="p">):</span>
+    <span class="n">member_id_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;1001.001&#39;</span><span class="p">:</span><span class="s1">&#39;r1i1001p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1021.002&#39;</span><span class="p">:</span><span class="s1">&#39;r2i1021p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1041.003&#39;</span><span class="p">:</span><span class="s1">&#39;r3i1041p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1061.004&#39;</span><span class="p">:</span><span class="s1">&#39;r4i1061p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1081.005&#39;</span><span class="p">:</span><span class="s1">&#39;r5i1081p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1101.006&#39;</span><span class="p">:</span><span class="s1">&#39;r6i1101p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1121.007&#39;</span><span class="p">:</span><span class="s1">&#39;r7i1121p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1141.008&#39;</span><span class="p">:</span><span class="s1">&#39;r8i1141p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1161.009&#39;</span><span class="p">:</span><span class="s1">&#39;r9i1161p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1181.010&#39;</span><span class="p">:</span><span class="s1">&#39;r10i1181p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1011.001&#39;</span><span class="p">:</span><span class="s1">&#39;r1i1011p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1031.002&#39;</span><span class="p">:</span><span class="s1">&#39;r2i1031p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1051.003&#39;</span><span class="p">:</span><span class="s1">&#39;r3i1051p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1071.004&#39;</span><span class="p">:</span><span class="s1">&#39;r4i1071p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1091.005&#39;</span><span class="p">:</span><span class="s1">&#39;r5i1091p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1111.006&#39;</span><span class="p">:</span><span class="s1">&#39;r6i1111p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1131.007&#39;</span><span class="p">:</span><span class="s1">&#39;r7i1131p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1151.008&#39;</span><span class="p">:</span><span class="s1">&#39;r8i1151p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1171.009&#39;</span><span class="p">:</span><span class="s1">&#39;r9i1171p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1191.010&#39;</span><span class="p">:</span><span class="s1">&#39;r10i1191p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.001&#39;</span><span class="p">:</span><span class="s1">&#39;r1i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.002&#39;</span><span class="p">:</span><span class="s1">&#39;r2i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.003&#39;</span><span class="p">:</span><span class="s1">&#39;r3i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.004&#39;</span><span class="p">:</span><span class="s1">&#39;r4i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.005&#39;</span><span class="p">:</span><span class="s1">&#39;r5i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.006&#39;</span><span class="p">:</span><span class="s1">&#39;r6i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.007&#39;</span><span class="p">:</span><span class="s1">&#39;r7i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.008&#39;</span><span class="p">:</span><span class="s1">&#39;r8i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.009&#39;</span><span class="p">:</span><span class="s1">&#39;r9i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.010&#39;</span><span class="p">:</span><span class="s1">&#39;r10i1231p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.011&#39;</span><span class="p">:</span><span class="s1">&#39;r11i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.012&#39;</span><span class="p">:</span><span class="s1">&#39;r12i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.013&#39;</span><span class="p">:</span><span class="s1">&#39;r13i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.014&#39;</span><span class="p">:</span><span class="s1">&#39;r14i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.015&#39;</span><span class="p">:</span><span class="s1">&#39;r15i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.016&#39;</span><span class="p">:</span><span class="s1">&#39;r16i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.017&#39;</span><span class="p">:</span><span class="s1">&#39;r17i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.018&#39;</span><span class="p">:</span><span class="s1">&#39;r18i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.019&#39;</span><span class="p">:</span><span class="s1">&#39;r19i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1231.020&#39;</span><span class="p">:</span><span class="s1">&#39;r20i1231p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.001&#39;</span><span class="p">:</span><span class="s1">&#39;r1i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.002&#39;</span><span class="p">:</span><span class="s1">&#39;r2i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.003&#39;</span><span class="p">:</span><span class="s1">&#39;r3i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.004&#39;</span><span class="p">:</span><span class="s1">&#39;r4i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.005&#39;</span><span class="p">:</span><span class="s1">&#39;r5i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.006&#39;</span><span class="p">:</span><span class="s1">&#39;r6i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.007&#39;</span><span class="p">:</span><span class="s1">&#39;r7i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.008&#39;</span><span class="p">:</span><span class="s1">&#39;r8i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.009&#39;</span><span class="p">:</span><span class="s1">&#39;r9i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.010&#39;</span><span class="p">:</span><span class="s1">&#39;r10i1251p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.011&#39;</span><span class="p">:</span><span class="s1">&#39;r11i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.012&#39;</span><span class="p">:</span><span class="s1">&#39;r12i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.013&#39;</span><span class="p">:</span><span class="s1">&#39;r13i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.014&#39;</span><span class="p">:</span><span class="s1">&#39;r14i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.015&#39;</span><span class="p">:</span><span class="s1">&#39;r15i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.016&#39;</span><span class="p">:</span><span class="s1">&#39;r16i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.017&#39;</span><span class="p">:</span><span class="s1">&#39;r17i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.018&#39;</span><span class="p">:</span><span class="s1">&#39;r18i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.019&#39;</span><span class="p">:</span><span class="s1">&#39;r19i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1251.020&#39;</span><span class="p">:</span><span class="s1">&#39;r20i1251p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.001&#39;</span><span class="p">:</span><span class="s1">&#39;r1i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.002&#39;</span><span class="p">:</span><span class="s1">&#39;r2i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.003&#39;</span><span class="p">:</span><span class="s1">&#39;r3i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.004&#39;</span><span class="p">:</span><span class="s1">&#39;r4i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.005&#39;</span><span class="p">:</span><span class="s1">&#39;r5i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.006&#39;</span><span class="p">:</span><span class="s1">&#39;r6i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.007&#39;</span><span class="p">:</span><span class="s1">&#39;r7i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.008&#39;</span><span class="p">:</span><span class="s1">&#39;r8i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.009&#39;</span><span class="p">:</span><span class="s1">&#39;r9i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.010&#39;</span><span class="p">:</span><span class="s1">&#39;r10i1281p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.011&#39;</span><span class="p">:</span><span class="s1">&#39;r11i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.012&#39;</span><span class="p">:</span><span class="s1">&#39;r12i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.013&#39;</span><span class="p">:</span><span class="s1">&#39;r13i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.014&#39;</span><span class="p">:</span><span class="s1">&#39;r14i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.015&#39;</span><span class="p">:</span><span class="s1">&#39;r15i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.016&#39;</span><span class="p">:</span><span class="s1">&#39;r16i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.017&#39;</span><span class="p">:</span><span class="s1">&#39;r17i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.018&#39;</span><span class="p">:</span><span class="s1">&#39;r18i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.019&#39;</span><span class="p">:</span><span class="s1">&#39;r19i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1281.020&#39;</span><span class="p">:</span><span class="s1">&#39;r20i1281p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.001&#39;</span><span class="p">:</span><span class="s1">&#39;r1i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.002&#39;</span><span class="p">:</span><span class="s1">&#39;r2i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.003&#39;</span><span class="p">:</span><span class="s1">&#39;r3i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.004&#39;</span><span class="p">:</span><span class="s1">&#39;r4i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.005&#39;</span><span class="p">:</span><span class="s1">&#39;r5i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.006&#39;</span><span class="p">:</span><span class="s1">&#39;r6i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.007&#39;</span><span class="p">:</span><span class="s1">&#39;r7i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.008&#39;</span><span class="p">:</span><span class="s1">&#39;r8i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.009&#39;</span><span class="p">:</span><span class="s1">&#39;r9i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.010&#39;</span><span class="p">:</span><span class="s1">&#39;r10i1301p1f1&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.011&#39;</span><span class="p">:</span><span class="s1">&#39;r11i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.012&#39;</span><span class="p">:</span><span class="s1">&#39;r12i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.013&#39;</span><span class="p">:</span><span class="s1">&#39;r13i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.014&#39;</span><span class="p">:</span><span class="s1">&#39;r14i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.015&#39;</span><span class="p">:</span><span class="s1">&#39;r15i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.016&#39;</span><span class="p">:</span><span class="s1">&#39;r16i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.017&#39;</span><span class="p">:</span><span class="s1">&#39;r17i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.018&#39;</span><span class="p">:</span><span class="s1">&#39;r18i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.019&#39;</span><span class="p">:</span><span class="s1">&#39;r19i1301p1f2&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;1301.020&#39;</span><span class="p">:</span><span class="s1">&#39;r20i1301p1f2&#39;</span><span class="p">,</span>
+                        <span class="p">}</span>
+    <span class="k">return</span> <span class="n">member_id_mapping</span><span class="p">[</span><span class="n">member_id</span><span class="p">]</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
