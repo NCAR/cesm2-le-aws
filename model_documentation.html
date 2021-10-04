@@ -197,24 +197,29 @@
      Ensemble Member Description
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visual-representation-of-the-ensemble">
-     Visual Representation of the Ensemble
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-is-the-member-id-assembled">
-   How is the “
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     member_id
-    </span>
-   </code>
-   ” Assembled?
+  <a class="reference internal nav-link" href="#data">
+   Data
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-catalog">
+     Data Catalog
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-is-the-member-id-assembled">
+     How is the “
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       member_id
+      </span>
+     </code>
+     ” Assembled?
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#adding-a-helper-function-to-map-from-control-branch-year-member-number-to-member-id">
      Adding a “Helper Function” to Map from Control Branch Year + Member Number to Member ID
@@ -269,29 +274,25 @@
 <p><img alt="CESM2-LE-image1" src="_images/CESM2LE_1.png" />
 <img alt="CESM2-LE-image2" src="_images/CESM2LE_2.png" /></p>
 </div>
-<div class="section" id="visual-representation-of-the-ensemble">
-<h3>Visual Representation of the Ensemble<a class="headerlink" href="#visual-representation-of-the-ensemble" title="Permalink to this headline">¶</a></h3>
-<p>Here is a visual representation of the ensemble, focusing on the SSP370 future scenario, there is also a matching historical experiment with an identical experiment numbers and forcings.</p>
-<p>Here, experiment number is meant to represent the “model year” described above.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">wand.image</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">WImage</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">WImage</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;cesm2-le-documentation.pdf&#39;</span><span class="p">)</span>
-<span class="n">img</span>
-</pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/model_documentation_2_0.png" src="_images/model_documentation_2_0.png" />
-</div>
-</div>
-</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<p>Zarr format: The CESM2-LE data on AWS are structured according to the <a class="reference external" href="https://zarr.readthedocs.io/en/stable/">Zarr</a> storage format. There are independent Zarr stores for each component, frequency, experiment, and variable. The naming convention is: <code class="docutils literal notranslate"><span class="pre">{component}/{frequency}/cesmLE-{experiment}-{forcing_variant}-{variable}.zarr</span></code> where:</p>
+<p><code class="docutils literal notranslate"><span class="pre">component</span></code> = atm (atmosphere), lnd (land), ocn (ocean), ice</p>
+<p><code class="docutils literal notranslate"><span class="pre">frequency</span></code> = monthly, daily, or hourly6</p>
+<p><code class="docutils literal notranslate"><span class="pre">experiment</span></code> = historical (1850 to 2015) or ssp370 (2015 to 2100)</p>
+<p><code class="docutils literal notranslate"><span class="pre">forcing_variant</span></code> = the biomass forcing variant, cmip6 (the default in the cmip6 runs) or smbb (smoothed biomass burning)</p>
+<p><code class="docutils literal notranslate"><span class="pre">variable</span></code> = one of the variable names listed in the tables below</p>
+<p>Within each of these Zarr stores are the datasets with an additional <code class="docutils literal notranslate"><span class="pre">member_id</span></code> dimension</p>
+<div class="section" id="data-catalog">
+<h3>Data Catalog<a class="headerlink" href="#data-catalog" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="how-is-the-member-id-assembled">
-<h2>How is the “<code class="docutils literal notranslate"><span class="pre">member_id</span></code>” Assembled?<a class="headerlink" href="#how-is-the-member-id-assembled" title="Permalink to this headline">¶</a></h2>
+<h3>How is the “<code class="docutils literal notranslate"><span class="pre">member_id</span></code>” Assembled?<a class="headerlink" href="#how-is-the-member-id-assembled" title="Permalink to this headline">¶</a></h3>
 <p>Within this analysis ready, cloud native format, we use CMIP standard naming conventions for this dataset. Below are a couple of graphics describing the convention, and how we map from the <code class="docutils literal notranslate"><span class="pre">{control_branch_year}.{ensemble_number}</span></code> (ex. <code class="docutils literal notranslate"><span class="pre">1231.001</span></code>) syntax from above, to the CMIP standard.</p>
 <p><img alt="" src="_images/cesm2_le_naming_1.png" />
 <img alt="" src="_images/cesm2_le_naming_2.png" /></p>
+</div>
 <div class="section" id="adding-a-helper-function-to-map-from-control-branch-year-member-number-to-member-id">
 <h3>Adding a “Helper Function” to Map from Control Branch Year + Member Number to Member ID<a class="headerlink" href="#adding-a-helper-function-to-map-from-control-branch-year-member-number-to-member-id" title="Permalink to this headline">¶</a></h3>
 <p>Below is a sample function, written in Python, to help with mapping from one to the other! Feel free to use it in your analysis.</p>
