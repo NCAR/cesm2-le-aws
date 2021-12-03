@@ -1,1 +1,1 @@
-# cesm2-le-aws
+# NCAR CESM2 Large Ensemble Cloud-Optimized Dataset
