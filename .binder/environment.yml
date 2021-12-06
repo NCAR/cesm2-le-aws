@@ -1,0 +1,21 @@
+name: notebook
+channels:
+  - conda-forge
+  - pyviz
+dependencies:
+  - cftime
+  - fsspec
+  - intake-esm
+  - nc-time-axis
+  - netcdf4
+  - numpy
+  - xarray
+  - hvplot
+  - holoviews
+  - dask
+  - distributed
+  - pip
+  - s3fs
+  - watermark
+  - zarr
+  - cartopy
