@@ -33,7 +33,7 @@ jobs:
           python -m pip install fsspec cf_xarray xarray cftime dask zarr s3fs tqdm
       - name: Update catalog
         run: |
-          python intake-catalogs/catalog-builder.py
+          python intake-catalogs/build_catalog.py
           git status
       - name: Commit files
         run: |
