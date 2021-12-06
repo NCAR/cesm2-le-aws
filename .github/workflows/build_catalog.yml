@@ -1,0 +1,61 @@
+name: Update catalog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'intake-catalogs/*'
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'intake-catalogs/*'
+
+  workflow_dispatch: # allows you to trigger manually
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip ci') && (github.repository == 'NCAR/cesm2-le-aws')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install fsspec cf_xarray xarray cftime dask zarr s3fs tqdm
+      - name: Update catalog
+        run: |
+          python intake-catalogs/catalog-builder.py
+          git status
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add intake-catalogs && git commit -m "[skip ci] Update catalogs."
+      - name: Configure AWS credentials
+        if: github.ref == 'refs/heads/main'
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Upload to S3
+        if: github.ref == 'refs/heads/main'
+        run: |
+          aws s3 sync intake-catalogs s3://ncar-cesm2-lens/catalogs/ --exclude "*" --include "aws-cesm2-le*"
+      - name: Push commit
+        if: github.ref == 'refs/heads/main'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true
