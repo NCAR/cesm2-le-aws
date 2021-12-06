@@ -1,5 +1,7 @@
 # NCAR CESM2 Large Ensemble Cloud-Optimized Dataset
 
+[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/NCAR/cesm2-le-aws/main)
+
 Examples of analysis of [CESM2-LE data](https://registry.opendata.aws/ncar-cesm2-lens/) publicly available on Amazon S3 (us-west-2 region) using xarray and dask.
 
 ## ESM Catalog
