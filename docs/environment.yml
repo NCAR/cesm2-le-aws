@@ -1,0 +1,13 @@
+name: cesm2-le-aws-site
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - jupyterlab
+  - intake-esm
+  - dask
+  - numpy
+  - xarray
+  - pip
+  - pip:
+      - -r requirements.txt
