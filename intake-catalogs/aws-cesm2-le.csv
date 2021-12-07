@@ -305,3 +305,15 @@ WVEL,vertical velocity,ocn,ssp370,smbb,monthly,60.0,global_ocean,centimeter/s,20
 ,,ice,ssp370,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
 ,,ocn,historical,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
 ,,ocn,ssp370,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
+,,atm,historical,cmip6,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
+,,atm,ssp370,cmip6,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
+,,ice,historical,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
+,,ice,ssp370,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
+,,ocn,historical,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
+,,ocn,ssp370,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
+,,atm,historical,cmip6,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
+,,atm,ssp370,cmip6,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
+,,ice,historical,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
+,,ice,ssp370,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
+,,ocn,historical,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
+,,ocn,ssp370,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
