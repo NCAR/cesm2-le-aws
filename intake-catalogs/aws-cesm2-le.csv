@@ -181,8 +181,10 @@ TREFHTMX,maximum reference height temperature over output period,atm,ssp370,smbb
 TS,surface temperature (radiative),atm,ssp370,smbb,monthly,1.0,global,K,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/atm/monthly/cesm2LE-ssp370-smbb-TS.zarr
 U,zonal wind,atm,ssp370,smbb,monthly,32.0,global,m/s,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/atm/monthly/cesm2LE-ssp370-smbb-U.zarr
 Z3,geopotential height (above sea level),atm,ssp370,smbb,monthly,32.0,global,m,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/atm/monthly/cesm2LE-ssp370-smbb-Z3.zarr
-,,atm,historical,,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
-,,atm,ssp370,,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
+,,atm,historical,smbb,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
+,,atm,historical,cmip6,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
+,,atm,ssp370,smbb,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
+,,atm,ssp370,cmip6,static,,global,,,,s3://ncar-cesm2-lens/atm/static/grid.zarr
 aice_d,ice area  (aggregate),ice,historical,cmip6,daily,1.0,global_ocean,1,1850-01-01 12:00:00,2014-12-30 12:00:00,s3://ncar-cesm2-lens/ice/daily/cesm2LE-historical-cmip6-aice_d.zarr
 hi_d,grid cell mean ice thickness,ice,historical,cmip6,daily,1.0,global_ocean,m,1850-01-01 12:00:00,2014-12-30 12:00:00,s3://ncar-cesm2-lens/ice/daily/cesm2LE-historical-cmip6-hi_d.zarr
 aice_d,ice area  (aggregate),ice,historical,smbb,daily,1.0,global_ocean,1,1850-01-01 12:00:00,2014-12-30 12:00:00,s3://ncar-cesm2-lens/ice/daily/cesm2LE-historical-smbb-aice_d.zarr
@@ -199,8 +201,10 @@ aice,ice area  (aggregate),ice,ssp370,cmip6,monthly,1.0,global_ocean,1,2015-01-1
 hi,grid cell mean ice thickness,ice,ssp370,cmip6,monthly,1.0,global_ocean,m,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/ice/monthly/cesm2LE-ssp370-cmip6-hi.zarr
 aice,ice area  (aggregate),ice,ssp370,smbb,monthly,1.0,global_ocean,1,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/ice/monthly/cesm2LE-ssp370-smbb-aice.zarr
 hi,grid cell mean ice thickness,ice,ssp370,smbb,monthly,1.0,global_ocean,m,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/ice/monthly/cesm2LE-ssp370-smbb-hi.zarr
-,,ice,historical,,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
-,,ice,ssp370,,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
+,,ice,historical,smbb,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
+,,ice,historical,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
+,,ice,ssp370,smbb,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
+,,ice,ssp370,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ice/static/grid.zarr
 FSNO,fraction of ground covered by snow,lnd,historical,cmip6,daily,1.0,global_land,unitless,1850-01-01 12:00:00,2014-12-31 12:00:00,s3://ncar-cesm2-lens/lnd/daily/cesm2LE-historical-cmip6-FSNO.zarr
 H2OSNO,snow depth (liquid water),lnd,historical,cmip6,daily,1.0,global_land,mm,1850-01-01 12:00:00,2014-12-31 12:00:00,s3://ncar-cesm2-lens/lnd/daily/cesm2LE-historical-cmip6-H2OSNO.zarr
 NPP,net primary production,lnd,historical,cmip6,daily,1.0,global_land,gC/m^2/s,1850-01-01 12:00:00,2014-12-31 12:00:00,s3://ncar-cesm2-lens/lnd/daily/cesm2LE-historical-cmip6-NPP.zarr
@@ -313,5 +317,7 @@ VVEL,velocity in grid-y direction,ocn,ssp370,smbb,monthly,60.0,global_ocean,cent
 WTS,salt flux across top face,ocn,ssp370,smbb,monthly,60.0,global_ocean,gram/kilogram/s,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/ocn/monthly/cesm2LE-ssp370-smbb-WTS.zarr
 WTT,heat flux across top face,ocn,ssp370,smbb,monthly,60.0,global_ocean,degC/s,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/ocn/monthly/cesm2LE-ssp370-smbb-WTT.zarr
 WVEL,vertical velocity,ocn,ssp370,smbb,monthly,60.0,global_ocean,centimeter/s,2015-01-16 12:00:00,2100-12-16 12:00:00,s3://ncar-cesm2-lens/ocn/monthly/cesm2LE-ssp370-smbb-WVEL.zarr
-,,ocn,historical,,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
-,,ocn,ssp370,,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
+,,ocn,historical,smbb,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
+,,ocn,historical,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
+,,ocn,ssp370,smbb,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
+,,ocn,ssp370,cmip6,static,,global_ocean,,,,s3://ncar-cesm2-lens/ocn/static/grid.zarr
