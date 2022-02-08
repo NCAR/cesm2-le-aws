@@ -1,0 +1,301 @@
+atm:
+  cam.h0:
+    frequency: monthly
+    stream: cam.h0
+    freq: MS
+    time_bounds_dim: nbnd
+    variable_category:
+      3D:
+        variable:
+          - T
+          - U
+          - V
+          - Q
+          - Z3
+        experiment:
+          ssp370:
+            chunks:
+              time: 24
+          historical:
+            chunks:
+              time: 24
+
+      2D:
+        variable:
+          - FLNS
+          - FLNSC
+          - FLUT
+          - FSNS
+          - FSNSC
+          - FSNTOA
+          - ICEFRAC
+          - LHFLX
+          - PRECC
+          - PRECL
+          - PRECSC
+          - PRECSL
+          - PSL
+          - SHFLX
+          - TMQ
+          - TREFHT
+          - TREFHTMN
+          - TREFHTMX
+          - TS
+
+        experiment:
+          ssp370:
+            chunks:
+              time: 600
+          historical:
+            chunks:
+              time: 600
+    cam.h6:
+        frequency: daily
+        stream: cam.h6
+        freq: D
+        time_bounds_dim: nbnd
+        variable_category:
+          3D:
+            variable:
+                - T
+                - U
+                - V
+                - Q
+                - Z3
+            experiment:
+              ssp370:
+                chunks:
+                  time: 10
+              historical:
+                chunks:
+                  time: 10
+    cam.h1:
+        frequency: daily
+        stream: cam.h1
+        freq: D
+        time_bounds_dim: nbnd
+        variable_category:
+
+          2D:
+            variable:
+                - FLNS
+                - FLNSC
+                - FLUT
+                - FSNS
+                - FSNSC
+                - FSNTOA
+                - ICEFRAC
+                - LHFLX
+                - PRECC
+                - PRECL
+                - PRECSC
+                - PRECSL
+                - PSL
+                - SHFLX
+                - TMQ
+                - TREFHT
+                - TREFHTMN
+                - TREFHTMX
+                - TS
+
+            experiment:
+              ssp370:
+                chunks:
+                  time: 730
+              historical:
+                chunks:
+                  time: 730
+
+lnd:
+  clm2.h0:
+    frequency: monthly
+    stream: clm2.h0
+    time_bounds_dim: hist_interval
+    freq: MS
+    variable_category:
+      2D:
+        variable:
+          - FSNO
+          - H2OSNO
+          - QRUNOFF
+          - RAIN
+          - SNOW
+          - SOILWATER_10CM
+          - TREFMXAV
+        experiment:
+          ssp370:
+              chunks:
+                  time: 600
+
+          historical:
+              chunks:
+                  time: 600
+              
+      3D:
+        variable:
+          - SOILLIQ
+        experiment:
+          ssp370:
+            chunks:
+              time: 48
+          historical:
+            chunks:
+              time: 48
+
+  clm2.h1:
+    frequency: daily
+    stream: clm2.h1
+    time_bounds_dim: hist_interval
+    freq: D
+    variable_category:
+      2D:
+        variable:
+          - FSNO
+          - H2OSNO
+          - QRUNOFF
+          - RAIN
+          - SNOW
+          - SOILWATER_10CM
+          - TREFMXAV
+        experiment:
+          CTRL:
+            chunks:
+              time: 600
+
+          RCP85:
+            chunks:
+              time: 600
+
+          20C:
+            chunks:
+              time: 600
+
+      3D:
+        variable:
+          - SOILLIQ
+
+        experiment:
+          CTRL:
+            chunks:
+              time: 30
+
+          RCP85:
+            chunks:
+              time: 30
+
+          20C:
+            chunks:
+              time: 30
+ice:
+  cice.h:
+    frequency: monthly
+    stream: cice.h
+    freq: MS
+    time_bounds_dim: d2
+    variable_category:
+        3D:
+          variable:
+            - hi
+            - aice
+          experiment:
+            ssp370:
+              chunks:
+                time: 1224
+                ni: 320
+                nj: 104
+            historical:
+              chunks:
+                time: 1224
+                ni: 320
+                nj: 104
+
+  cice.h1:
+    frequency: daily
+    stream: cice.h1
+    freq: D
+    time_bounds_dim: d2
+    variable_category:
+              3D:
+                variable:
+                  - hi_d
+                  - aice_d
+
+                experiment:
+                  ssp370:
+                    chunks:
+                      time: 365
+                      ni: -1
+                      nj: -1
+
+                  historical:
+                    chunks:
+                      time: 365
+                      ni: -1
+                      nj: -1
+ocn:
+  pop.h:
+    frequency: monthly
+    stream: pop.h
+    freq: MS
+    time_bounds_dim: d2
+    variable_category:
+      2D:
+        variable:
+          # Completed Variables
+          - SST
+          - SSH
+          - SFWF
+          - SHF
+          - TAUX
+          - TAUY
+          - FW
+          - TAUX2
+          - TAUY2
+          - QFLUX
+          - HMXL
+          - QSW_HTP
+          - QSW_HBL
+          - SHF_QSW
+          - SFWF_WRST
+          - RESID_S
+          - RESID_T
+        experiment:
+          ssp370:
+            chunks:
+              time: 300
+              nlat: -1
+              nlon: -1
+          historical:
+            chunks:
+              time: 300
+              nlat: -1
+              nlon: -1
+      3D:
+        variable:
+          # Completed Variables
+          - SALT
+          - TEMP
+          - UVEL
+          - VNS
+          - VNT
+          - VVEL
+          - WVEL
+          - UES
+          - UET
+          - DIC
+          - DOC
+          - PD
+          - O2
+          - WTS
+          - WTT
+        experiment:
+          historical:
+            chunks:
+              time: 6
+              nlat: -1
+              nlon: -1
+          ssp370:
+            chunks:
+              time: 6
+              nlat: -1
+              nlon: -1
