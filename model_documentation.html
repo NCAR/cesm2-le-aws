@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -41,13 +41,12 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
+    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -68,7 +67,12 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
@@ -117,22 +121,22 @@
 
 
           
+<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
+<div class="sbt-scroll-pixel-helper"></div>
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
     <div class="topbar container-xl fixed-top">
     <div class="topbar-contents row">
         <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
         <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
+            <div class="topbar-left">
+                
+                <label class="nav-toggle-button" for="__navigation">
+                    <div class="visually-hidden">Toggle navigation</div>
+                    <i class="fas fa-bars"></i>
+                </label>
+                
+            </div>
             
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
@@ -147,7 +151,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -176,13 +180,14 @@
         
         
         
+        
     </div>
 </div>
 
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -257,7 +262,85 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>NCAR CESM2 Large Ensemble Cloud-Optimized Dataset</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acknowledgement">
+     Acknowledgement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#experiment-explanation">
+     Experiment Explanation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ensemble-member-description">
+     Ensemble Member Description
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-catalog">
+     Data Catalog
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-is-the-member-id-assembled">
+     How is the “
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       member_id
+      </span>
+     </code>
+     ” Assembled?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-a-helper-function-to-map-from-control-branch-year-member-number-to-member-id">
+     Adding a “Helper Function” to Map from Control Branch Year + Member Number to Member ID
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-citation">
+   Data Citation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contact">
+   Contact
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="ncar-cesm2-large-ensemble-cloud-optimized-dataset">
@@ -388,12 +471,12 @@
 </script>
 <!-- The state of all the widget models on the page -->
 <script type="application/vnd.jupyter.widget-state+json">
-  {"version_major": 2, "version_minor": 0, "state": {"9a0e3afea4084288a2ea6aad223474de": {"model_name": "AgGridModel", "model_module": "ipyaggrid", "model_module_version": "~0.2.1", "state": {"_dom_classes": [], "_grid_data_down": "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\n4AEA\n", "_grid_data_up": {}, "_grid_options_mono_down": "H4sIAEHPyWEC/52Uz27CMAzGXwXlXO0Bdt3EbmgCbtOETOuWSPnTOW4HQ7z7kgKlCds0Jbd8n/1z\nYlk+itKqTptnrJ14nL0dxQ6hQlqARn8XPZCErUJRzEQtUVWpSPbzhWzXer0G5dBLfGiHXMY9Pw10\ncSpmKVlZ02xMuEzRkZrNLq1urUHDETtSs9m4b5GkTuGxnE2vLZXSt2BocVLiBy+/DuFHh6Y8xBWm\naja7R2JZgtoo7FG5eHTuvT/qmE5vkX6v5Fpg6WGV1SBNVOjeyv5PZyTHvxiVbKZjIN6wTMY/lvNn\n1FT37KmYTfZd3UXUq/BP4nsRHhKWx8r6STCND2DqcJTnUjFSqvr0JTr5hamxBNPgChWWLK25ueet\ntvYvCGvtGE9SEOprHQHNYmJe6p+K6N1pxnq0JvEVME7ie1Adzi1p4EveDpVfEu4hBN6MoZs39PNI\nuaBH/xUI9Pk7YZX5G9uIe1YxEJw4+fMNzvRSHt4FAAA=\n", "_grid_options_multi_down": [], "_id": 697577608, "_js_helpers_builtin": "H4sIAEHPyWEC/+1VUW/bNhB+z6+4h6CWA0dxNqAPzlLMcZM2wDZvs9GXYVgZ6WxroUiBR6ZJDf/3\nHinLlmV5SYEC28P4IFHid98dj98dFygLNHTlMmkzBZewPAIeqbB4o00urEUzgJlTic20ipROsbvG\n+HF2Brm4RyBnMBhBRqC0BadSnGUK0w00m0Ewh1evwL/jByHdDpkfEi2kHIbCT/CW+aIa9GIPuWBk\nGs/RvtfOUNSCyCvEz5lyFlsxVGEmmGiV7mH4J1nQsxkxeA2dZjl+1grH4W/UhRN43eexa7mzk40d\no0/XdK2envI0uLH6djKeWJOpedSNyd1ROe/34LzfsPTZ5WxcXkLfJzjfTqmcNhPth0HrjPL+dslW\nh6i7IeOdfr+z7z2vIPlByCYUaoWsw/l4vOSIVnC8XKwGx8vcP2j1cYvdhre2UE7KcnnVOwrvWdDu\nrbIDSL+Py6+o04v7s063V0PcSC2amO8CJoAyZV9SBeswNk73RbuJy/v7asoQ5WHSROeFMOhFRjXK\nGZc0mp90IqRf6kGCUn5oFh1X8JDI5WX5EjARkNUGUxDE1ayPdsXpSTxdXdlb4oujnXrfgH+ARjRN\nOa73e3peO2ZASbjL8+aFPOf/oJb+bvYo+4xTfZPZWurmJkvHhZ9S3UHtdyyKLPamIy1drigwRI2D\nEc7qCWOGUj5PXqZXSFky3qa+SP7486LVexIwQ46Be8qwsuHO5XV8LZJFVCLg8k0jQXUHceGoQnrK\n27TWVVbd51xX26uc16kbmTg7OSnJTuD6sdCG75q5F5wAq2E0+QCO/B8xP33HrsAnt8L/yNoWOSzH\nd39jYlf1WNaQs/DGwDvVI3p4abIDM20uvWrQfVa8R5GGAhWswV6jSfs9vjPaFVxu1rjGuje/0ZpV\nSq32fr2yPrD8a6b46pzq4hnElbZW562gzWG0xqiVfJqg5IRi2u7DFYVBot+cDl1ln4ILEX8ROQ6g\nkz/95b/ihB46DZoFot2iwuceRDuZ/q4/XeGEN1b4gPiGZOG2hFUYnXBUI+4HI97hnUjuB+UxeoMw\nKVtkq1l5qFtDf29sgauLg4Veaov7jRgS6ysqhfM1Gr9+5B72DVUe+P7X+b+j80dJ317n/iaejt+O\nYQDJApP7/5rug+L2lM/GXwBatMMsQwwAAA==\n", "columns_fit": "auto", "compress_data": true, "css_rules_down": [".ag-row-hover {background-color: lightblue !important;}", ".ag-column-hover {background-color: powderblue;}", ".ag-row-hover .ag-column-hover {background-color: deepskyblue !important;}"], "export_mode": "disabled", "height": "350px", "js_helpers": "H4sIAEHPyWEC/wMAAAAAAAAAAAA=\n", "js_helpers_custom": "H4sIAEHPyWEC/wMAAAAAAAAAAAA=\n", "js_post_grid": [], "js_pre_grid": [], "js_pre_helpers": [], "layout": "IPY_MODEL_b0cea1cdfdbe4cb882363a1e25dbbd60", "menu": {"buttons": [], "inputs": [{"name": "Quick Filter", "css": ".flex-child-quick-filter-697577608 {\norder: 0;\nalign-self: auto;\nmargin: 5px;\nflex: 0.00 1.00 auto;\nwidth: 150px;\n}\n"}], "button_div_css": ".flex-button-div-697577608 {\ndisplay: flex;\njustify-content: flex-start;\nalign-items: flex-start;\nalign-content: flex-start;\nflex-flow: row wrap;\n}\n", "input_div_css": ".flex-input-div-697577608 {\ndisplay: flex;\njustify-content: flex-start;\nalign-items: baseline;\nalign-content: flex-start;\nflex-flow: row wrap;\n}\n", "menu_div_css": ".flex-menu-div-697577608 {\ndisplay: flex;\njustify-content: flex-start;\nalign-items: flex-start;\nalign-content: flex-start;\nflex-flow: row wrap;\n}\n"}, "theme": "ag-theme-blue", "user_params": {}}}, "b0cea1cdfdbe4cb882363a1e25dbbd60": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {}}}}
+  {"version_major": 2, "version_minor": 0, "state": {"16bcbfaec4c74b12b57ae4b625b20f47": {"model_name": "AgGridModel", "model_module": "ipyaggrid", "model_module_version": "~0.2.1", "state": {"_dom_classes": [], "_grid_data_down": "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\ntXlHtko1s1H99//trdhfT+cBAA==\n", "_grid_data_up": {}, "_grid_options_mono_down": "H4sIAN/SyWEC/52Uz27CMAzGXwXlXO0Bdt3EbmgCbtOETOuWSPnTOW4HQ7z7kgKlCds0Jbd8n/1z\nYlk+itKqTptnrJ14nL0dxQ6hQlqARn8XPZCErUJRzEQtUVWpSPbzhWzXer0G5dBLfGiHXMY9Pw10\ncSpmKVlZ02xMuEzRkZrNLq1urUHDETtSs9m4b5GkTuGxnE2vLZXSt2BocVLiBy+/DuFHh6Y8xBWm\naja7R2JZgtoo7FG5eHTuvT/qmE5vkX6v5Fpg6WGV1SBNVOjeyv5PZyTHvxiVbKZjIN6wTMY/lvNn\n1FT37KmYTfZd3UXUq/BP4nsRHhKWx8r6STCND2DqcJTnUjFSqvr0JTr5hamxBNPgChWWLK25ueet\ntvYvCGvtGE9SEOprHQHNYmJe6p+K6N1pxnq0JvEVME7ie1Adzi1p4EveDpVfEu4hBN6MoZs39PNI\nuaBH/xUI9Pk7YZX5G9uIe1YxEJw4+fMNzvRSHt4FAAA=\n", "_grid_options_multi_down": [], "_id": 188035222, "_js_helpers_builtin": "H4sIAN/SyWEC/+1VUW/bNhB+z6+4h6CWA0dxNqAPzlLMcZM2wDZvs9GXYVgZ6WxroUiBR6ZJDf/3\nHinLlmV5SYEC28P4IFHid98dj98dFygLNHTlMmkzBZewPAIeqbB4o00urEUzgJlTic20ipROsbvG\n+HF2Brm4RyBnMBhBRqC0BadSnGUK0w00m0Ewh1evwL/jByHdDpkfEi2kHIbCT/CW+aIa9GIPuWBk\nGs/RvtfOUNSCyCvEz5lyFlsxVGEmmGiV7mH4J1nQsxkxeA2dZjl+1grH4W/UhRN43eexa7mzk40d\no0/XdK2envI0uLH6djKeWJOpedSNyd1ROe/34LzfsPTZ5WxcXkLfJzjfTqmcNhPth0HrjPL+dslW\nh6i7IeOdfr+z7z2vIPlByCYUaoWsw/l4vOSIVnC8XKwGx8vcP2j1cYvdhre2UE7KcnnVOwrvWdDu\nrbIDSL+Py6+o04v7s063V0PcSC2amO8CJoAyZV9SBeswNk73RbuJy/v7asoQ5WHSROeFMOhFRjXK\nGZc0mp90IqRf6kGCUn5oFh1X8JDI5WX5EjARkNUGUxDE1ayPdsXpSTxdXdlb4oujnXrfgH+ARjRN\nOa73e3peO2ZASbjL8+aFPOf/oJb+bvYo+4xTfZPZWurmJkvHhZ9S3UHtdyyKLPamIy1drigwRI2D\nEc7qCWOGUj5PXqZXSFky3qa+SP7486LVexIwQ46Be8qwsuHO5XV8LZJFVCLg8k0jQXUHceGoQnrK\n27TWVVbd51xX26uc16kbmTg7OSnJTuD6sdCG75q5F5wAq2E0+QCO/B8xP33HrsAnt8L/yNoWOSzH\nd39jYlf1WNaQs/DGwDvVI3p4abIDM20uvWrQfVa8R5GGAhWswV6jSfs9vjPaFVxu1rjGuje/0ZpV\nSq32fr2yPrD8a6b46pzq4hnElbZW562gzWG0xqiVfJqg5IRi2u7DFYVBot+cDl1ln4ILEX8ROQ6g\nkz/95b/ihB46DZoFot2iwuceRDuZ/q4/XeGEN1b4gPiGZOG2hFUYnXBUI+4HI97hnUjuB+UxeoMw\nKVtkq1l5qFtDf29sgauLg4Veaov7jRgS6ysqhfM1Gr9+5B72DVUe+P7X+b+j80dJ317n/iaejt+O\nYQDJApP7/5rug+L2lM/GXwBatMMsQwwAAA==\n", "columns_fit": "auto", "compress_data": true, "css_rules_down": [".ag-row-hover {background-color: lightblue !important;}", ".ag-column-hover {background-color: powderblue;}", ".ag-row-hover .ag-column-hover {background-color: deepskyblue !important;}"], "export_mode": "disabled", "height": "350px", "js_helpers": "H4sIAN/SyWEC/wMAAAAAAAAAAAA=\n", "js_helpers_custom": "H4sIAN/SyWEC/wMAAAAAAAAAAAA=\n", "js_post_grid": [], "js_pre_grid": [], "js_pre_helpers": [], "layout": "IPY_MODEL_6529560eeacd4b77a8be4467dbb52a1d", "menu": {"buttons": [], "inputs": [{"name": "Quick Filter", "css": ".flex-child-quick-filter-188035222 {\norder: 0;\nalign-self: auto;\nmargin: 5px;\nflex: 0.00 1.00 auto;\nwidth: 150px;\n}\n"}], "button_div_css": ".flex-button-div-188035222 {\ndisplay: flex;\njustify-content: flex-start;\nalign-items: flex-start;\nalign-content: flex-start;\nflex-flow: row wrap;\n}\n", "input_div_css": ".flex-input-div-188035222 {\ndisplay: flex;\njustify-content: flex-start;\nalign-items: baseline;\nalign-content: flex-start;\nflex-flow: row wrap;\n}\n", "menu_div_css": ".flex-menu-div-188035222 {\ndisplay: flex;\njustify-content: flex-start;\nalign-items: flex-start;\nalign-content: flex-start;\nflex-flow: row wrap;\n}\n"}, "theme": "ag-theme-blue", "user_params": {}}}, "6529560eeacd4b77a8be4467dbb52a1d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {}}}}
 </script>
-<div id="embed-grid-697577608">
+<div id="embed-grid-188035222">
   <!-- This script tag will be replaced by the views DOM tree -->
   <script type="application/vnd.jupyter.widget-view+json">
-    {"version_major": 2, "version_minor": 0, "model_id": "9a0e3afea4084288a2ea6aad223474de"}
+    {"version_major": 2, "version_minor": 0, "model_id": "16bcbfaec4c74b12b57ae4b625b20f47"}
   </script>
 </div>
 </div></div>
@@ -558,8 +641,8 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
     <a class='right-next' id="next-link" href="kay_et_al_lens2.html" title="next page">
     <div class="prev-next-info">
@@ -569,25 +652,23 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By The Jupyter Book community<br/>
-        
-          <div class="extra_footer">
-            <p>
+  <p>
+    
+      By The Jupyter Book community<br/>
+    
+      <div class="extra_footer">
+        <p>
 By Science @ Scale Team <br>
 © Copyright 2021, National Center for Atmospheric Research.
 </p>
 
-          </div>
-      </p>
-    </div>
-  </footer>
+      </div>
+  </p>
+</footer>
 </main>
 
 
